@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 import { useSocialLogin } from "../../auth/useSocialLogin";
 
 const SocialLoginButtons = () => {
-  const { google, apple, kakao, naver } = useSocialLogin();
+  const { google, apple, kakao, NaverBtn } = useSocialLogin();
 
   return (
     <SLoginContainer>
       <button onClick={google}>Google 로그인</button>
       <button onClick={apple}>Apple 로그인</button>
       <button onClick={kakao}>kakao 로그인</button>
-      <button onClick={naver}>naver 로그인</button>
+      <NaverBtn />
     </SLoginContainer>
   );
 };

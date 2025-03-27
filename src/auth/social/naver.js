@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const loadNaverSDK = () => {
   return new Promise((resolve, reject) => {
     if (window.naver) return resolve(window.naver);
@@ -10,15 +12,19 @@ const loadNaverSDK = () => {
   });
 };
 
-export const signInWithNaver = async () => {
-  const naver = await loadNaverSDK();
+export default function signInWithNaver() {
+  useEffect(() => {
+    loadNaverSDK().then(() => {
+      const naverLogin = new window.naver.LoginWithNaverId({
+        clientId: import.meta.env.VITE_NAVER_CLIENT_ID,
+        callbackUrl: "https://your.site/naver/callback",
+        isPopup: true,
+        loginButton: { color: "green", type: 3, height: 40 },
+      });
 
-  const naverLogin = new naver.LoginWithNaverId({
-    clientId: import.meta.env.VITE_NAVER_CLIENT_ID,
-    callbackUrl: "https://light-way-hj-dps-projects.vercel.app/naver/callback",
-    isPopup: true,
-  });
+      naverLogin.init();
+    });
+  }, []);
 
-  naverLogin.init();
-  naverLogin.login();
-};
+  return <div id="naverIdLogin" />;
+}

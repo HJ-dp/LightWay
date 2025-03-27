@@ -1,13 +1,17 @@
+import { useContext } from "react";
+import { StyleContext } from "../../context/ContextProvider";
+
 import styled from "@emotion/styled";
 import Logo from "../common/Logo";
 import Page_URL from "../../routes/PageURL";
 import { Link } from "react-router-dom";
 
-function Header({ height = 48, maxWidth = 1200, gridBox }) {
+function Header({ gridBox }) {
+  const { layoutValue } = useContext(StyleContext);
   return (
     <SContainer gridBox={gridBox}>
-      <SHeader height={height} maxWidth={maxWidth}>
-        <Logo height={height} />
+      <SHeader style={layoutValue}>
+        <Logo height={layoutValue.headerHeight} />
         <SNav>
           <SUl>
             <li>
@@ -17,10 +21,7 @@ function Header({ height = 48, maxWidth = 1200, gridBox }) {
               <SLink to={Page_URL.main}>기록</SLink>
             </li>
             <li>
-              <SLink to={Page_URL.main}>기록</SLink>
-            </li>
-            <li>
-              <SLink to={Page_URL.main}>기록</SLink>
+              <SLink to={Page_URL.main}>세팅</SLink>
             </li>
           </SUl>
         </SNav>
@@ -38,13 +39,13 @@ const SContainer = styled.header`
 `;
 
 const SHeader = styled.div`
-  max-width: ${(props) => `${props.maxWidth}px`};
+  max-width: ${(props) => `${props.style.maxWidth}px`};
   display: flex;
   flex-shrink: 0;
   flex-grow: 1;
   place-items: center;
   margin: 0 auto;
-  height: ${(props) => `${props.height}px`};
+  height: ${(props) => `${props.style.headerHeight}px`};
   justify-content: space-between;
 `;
 

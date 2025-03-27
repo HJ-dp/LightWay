@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { StyleContext } from "../../context/ContextProvider";
+
 import styled from "@emotion/styled";
 
-function Footer({ height = 48, maxWidth = 1200, gridBox }) {
+function Footer({ gridBox }) {
+  const { layoutValue } = useContext(StyleContext);
   return (
     <Containter>
-      <SFooter height={height} maxWidth={maxWidth} gridBox={gridBox}>
-        푸터
+      <SFooter style={layoutValue} gridBox={gridBox}>
+        <SP>© LightWay All rights reserved.</SP>
       </SFooter>
     </Containter>
   );
@@ -18,8 +22,15 @@ const Containter = styled.footer`
 
 const SFooter = styled.div`
   width: 100%;
-  height: ${(props) => `${props.height}px`};
-  max-width: ${(props) => `${props.maxWidth}px`};
+  height: ${(props) => `${props.style.footerHeight}px`};
+  max-width: ${(props) => `${props.style.maxWidth}px`};
   margin: 0 auto;
   ${(props) => props.gridBox};
+  display: grid;
+  place-items: center;
+`;
+
+const SP = styled.p`
+  color: #606060;
+  font-size: 12px;
 `;

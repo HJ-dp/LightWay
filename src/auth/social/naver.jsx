@@ -18,7 +18,7 @@ export default function signInWithNaver() {
       const naverLogin = new window.naver.LoginWithNaverId({
         clientId: import.meta.env.VITE_NAVER_CLIENT_ID,
         callbackUrl: import.meta.env.VITE_NAVER_CALLBACK,
-        isPopup: true,
+        isPopup: false,
         loginButton: { color: "green", type: 3, height: 40 },
       });
 

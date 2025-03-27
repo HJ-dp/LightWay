@@ -1,5 +1,6 @@
 import { signInWithCustomToken } from "firebase/auth";
 import { auth } from "../../firebase";
+import Page_URL from "../../routes/PageURL";
 
 const loadKakaoScript = () => {
   return new Promise((resolve, reject) => {
@@ -33,7 +34,9 @@ export const signInWithKakao = async () => {
 
           const { firebaseToken } = await res.json();
           const result = await signInWithCustomToken(auth, firebaseToken);
+
           resolve(result.user);
+          window.location.href = Page_URL.main;
         } catch (error) {
           reject(error);
         }

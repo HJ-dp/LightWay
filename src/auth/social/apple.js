@@ -1,6 +1,7 @@
 import { OAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import Page_URL from "../../routes/PageURL";
 
 export const useAppleLogin = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export const useAppleLogin = () => {
       const provider = new OAuthProvider("apple.com");
       const result = await signInWithPopup(auth, provider);
       console.log("✅ apple 로그인 성공:", result.user);
-      navigate("/");
+      navigate(Page_URL.main);
     } catch (error) {
       console.error("❌ Google 로그인 실패:", error);
     }

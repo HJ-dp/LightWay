@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { signInWithCustomToken } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
+import Page_URL from "../../routes/PageURL";
 
 export default function NaverCallback() {
+  const navigate = useNavigate();
   useEffect(() => {
     const hash = window.location.hash;
     const token = new URLSearchParams(hash.replace("#", "?")).get(
@@ -19,10 +22,7 @@ export default function NaverCallback() {
       .then((res) => res.json())
       .then(async ({ firebaseToken }) => {
         await signInWithCustomToken(auth, firebaseToken);
-        if (window.opener) {
-          window.opener.postMessage("naver-login-success", "*");
-          window.close();
-        }
+        navigate(Page_URL.main);
       });
   }, []);
 

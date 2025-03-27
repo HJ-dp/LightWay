@@ -162,5 +162,4 @@ const BMIContainer = styled.section`
   display: flex;
   justify-content: center;
   padding: 1rem;
-  background-color: blue;
 `;

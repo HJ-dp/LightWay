@@ -1,16 +1,11 @@
-import { signInWithCustomToken } from "firebase/auth";
-import { auth } from "../../firebase";
-
-export const signInWithNaver = async () => {
-  const kakaoToken = await window.Kakao.Auth.login(); // 예시, 실제 SDK 호출 방식 다름
-
-  const res = await fetch("/api/auth/kakao", {
-    method: "POST",
-    body: JSON.stringify({ token: kakaoToken }),
-    headers: { "Content-Type": "application/json" },
+export const signInWithNaver = () => {
+  const naverLogin = new window.naver.LoginWithNaverId({
+    clientId: import.meta.env.VITE_NAVER_CLIENT_ID,
+    callbackUrl: "https://light-way-hj-dps-projects.vercel.app/naver/callback",
+    isPopup: true,
+    loginButton: { color: "green", type: 3, height: 40 },
   });
 
-  const { firebaseToken } = await res.json();
-  const result = await signInWithCustomToken(auth, firebaseToken);
-  return result.user;
+  naverLogin.init();
+  naverLogin.login();
 };

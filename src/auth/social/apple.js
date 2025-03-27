@@ -14,6 +14,6 @@ export const useAppleLogin = () => {
     } catch (error) {
       console.error("❌ Google 로그인 실패:", error);
     }
-    return signInWithApple;
   };
+  return signInWithApple;
 };

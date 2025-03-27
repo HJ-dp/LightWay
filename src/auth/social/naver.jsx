@@ -17,7 +17,7 @@ export default function signInWithNaver() {
     loadNaverSDK().then(() => {
       const naverLogin = new window.naver.LoginWithNaverId({
         clientId: import.meta.env.VITE_NAVER_CLIENT_ID,
-        callbackUrl: "https://light-way-hj-dps-projects.vercel.app/callback",
+        callbackUrl: import.meta.env.VITE_NAVER_CALLBACK,
         isPopup: true,
         loginButton: { color: "green", type: 3, height: 40 },
       });

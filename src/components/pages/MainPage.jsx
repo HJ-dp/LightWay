@@ -1,9 +1,20 @@
 import styled from "@emotion/styled";
 
+import BMICalculator from "../features/BMICalculator";
+import LivingPoint from "../features/LivingPoint";
+import { WrapperStyle } from "../styles/GlobalStyles";
+
 function MainPage() {
-  return <SSection>메인</SSection>;
+  return (
+    <SSectionWrapper>
+      <BMICalculator />
+      <LivingPoint />
+    </SSectionWrapper>
+  );
 }
 
 export default MainPage;
 
-const SSection = styled.section``;
+const SSectionWrapper = styled.section`
+  ${WrapperStyle}
+`;

@@ -3,11 +3,12 @@ import { useSocialLogin } from "../../auth/useSocialLogin";
 
 const SocialLoginButtons = () => {
   const { google, apple, kakao, NaverBtn } = useSocialLogin();
-
+  const googleLogin = google();
+  const appleLogin = apple();
   return (
     <SLoginContainer>
-      <button onClick={google}>Google 로그인</button>
-      <button onClick={apple}>Apple 로그인</button>
+      <button onClick={googleLogin}>Google 로그인</button>
+      <button onClick={appleLogin}>Apple 로그인</button>
       <button onClick={kakao}>kakao 로그인</button>
       <NaverBtn />
     </SLoginContainer>

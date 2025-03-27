@@ -1,12 +1,12 @@
-import { signInWithGoogle } from "./social/google";
-import { signInWithApple } from "./social/apple";
+import { useGoogleLogin } from "./social/google";
+import { useAppleLogin } from "./social/apple";
 import { signInWithKakao } from "./social/kakao";
 import signInWithNaver from "./social/naver";
 
 export const useSocialLogin = () => {
   return {
-    google: signInWithGoogle,
-    apple: signInWithApple,
+    google: useGoogleLogin,
+    apple: useAppleLogin,
     kakao: signInWithKakao,
     NaverBtn: signInWithNaver,
   };

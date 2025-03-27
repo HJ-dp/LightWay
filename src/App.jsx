@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Global } from "@emotion/react";
 import GlobalStyles from "./components/styles/GlobalStyles";
 import Router from "./routes/Router";

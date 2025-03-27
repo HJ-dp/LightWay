@@ -1,9 +1,9 @@
 import { initializeApp, cert, getApps } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 
-const privateKey = import.meta.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n");
-const clientEmail = import.meta.env.VITE_CLIENT_EMAIL;
-const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID;
+const privateKey = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n");
+const clientEmail = process.env.CLIENT_EMAIL;
+const projectId = process.env.FIREBASE_PROJECT_ID;
 
 // 중복 초기화 방지
 if (!getApps().length) {

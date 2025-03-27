@@ -22,7 +22,10 @@ export default function NaverCallback() {
       .then((res) => res.json())
       .then(async ({ firebaseToken }) => {
         await signInWithCustomToken(auth, firebaseToken);
-        navigate("/"); // 로그인 성공 후 이동
+        if (window.opener) {
+          window.opener.postMessage("naver-login-success", "*");
+          window.close();
+        }
       });
   }, []);
 

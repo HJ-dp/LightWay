@@ -1,6 +1,7 @@
 const Page_URL = {
   main: "/",
-  Error: "*",
+  login: "/login",
+  error: "*",
   naverCallback: "/callback",
 };
 

@@ -1,14 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StyleContext } from "../../context/ContextProvider";
-
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Outlet } from "react-router-dom";
-
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
 function Layout() {
+  MessageHandler();
   const { layoutValue } = useContext(StyleContext);
   return (
     <div>
@@ -19,6 +18,22 @@ function Layout() {
       <Footer gridBox={gridBox} />
     </div>
   );
+}
+
+function MessageHandler() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.data === "naver-login-success") {
+        navigate("/");
+      }
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
+  }, []);
+
+  return null;
 }
 
 export default Layout;
